@@ -144,10 +144,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
 ] 
 
-
-# Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 MPESA_CONSUMER_KEY ="8Dtq6trVE9pqmoLarD8EdQ8YtcrEGFnGGj0TLy2jsWfPKnAn"
 MPESA_CONSUMER_SECRET ="nGqm5MlFHgYjOafW8m1u09Mo6UEq3JIuh3jX6YrvMiAFi2soWfEBGy20n8PbZaoQ"
@@ -155,7 +154,7 @@ MPESA_SHORTCODE = "174379"  # sandbox paybill or till number
 MPESA_PASSKEY ="bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
 
 # This is the base URL for callbacks
-MPESA_CALLBACK_BASE ="https://2c2c828e8bfb.ngrok-free.app"  # or production domain
+MPESA_CALLBACK_BASE ="https://4b5f251bbe1f.ngrok-free.app"  # or production domain
 
 # Callback URLs (constructed from base)
 MPESA_CALLBACK_URL = f"{MPESA_CALLBACK_BASE}/api/mpesa-callback/"
