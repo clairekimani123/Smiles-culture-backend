@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# macOS / Linux
+.DS_Store
+
+# Node modules (if React/Vue frontend is inside this project)
+node_modules/
