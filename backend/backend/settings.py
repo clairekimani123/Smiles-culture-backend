@@ -125,4 +125,4 @@ MPESA_SHORTCODE = os.getenv("MPESA_SHORTCODE")
 MPESA_PASSKEY = os.getenv("MPESA_PASSKEY")
 
 # ✅ Callback URL loaded from .env (fallback to ngrok if not set)
-MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "https://412e31c49d94.ngrok-free.app/api/mpesa-callback/")
+MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "https://b7223e7b5186.ngrok-free.app/api/mpesa-callback/")
