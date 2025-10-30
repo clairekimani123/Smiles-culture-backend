@@ -20,7 +20,8 @@ SECRET_KEY = 'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['smiles-culture-backend-4.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
