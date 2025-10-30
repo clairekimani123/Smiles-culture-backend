@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =False
 
-ALLOWED_HOSTS = ['smiles-culture-backend-6.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['hhtp://smiles-culture-backend-6.onrender.com', 'localhost', '127.0.0.1']
 
 
 
@@ -113,6 +113,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://412e31c49d94.ngrok-free.app",
+    "https://smiles-culture-o7xo.vercel.app/",
 ]
 
 MEDIA_URL = '/media/'
