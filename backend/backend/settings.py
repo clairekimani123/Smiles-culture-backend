@@ -113,7 +113,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://412e31c49d94.ngrok-free.app",
-    "https://smiles-culture-2y4b.vercel.app/",
+    "https://smiles-culture-933u.vercel.app/",
 ]
 
 MEDIA_URL = '/media/'
