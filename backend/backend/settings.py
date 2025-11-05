@@ -30,8 +30,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'store',
     'django_extensions',
-    'cloudinary',
     'cloudinary_storage',
+    'cloudinary',
+    
 ]
 
 MIDDLEWARE = [
