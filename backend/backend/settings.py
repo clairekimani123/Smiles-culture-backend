@@ -10,7 +10,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf'
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     # 'smiles-culture-backend-8.onrender.com',
