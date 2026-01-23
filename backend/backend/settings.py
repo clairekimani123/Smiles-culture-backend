@@ -10,12 +10,13 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf'
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'smiles-culture-backend-8.onrender.com',
+    # 'smiles-culture-backend-8.onrender.com',
     'localhost',
     '127.0.0.1',
+
 ]
 
 INSTALLED_APPS = [
@@ -100,7 +101,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://127.0.0.1:8000",
     "https://412e31c49d94.ngrok-free.app",
     "https://smiles-culture-rrvi.vercel.app",
 ]
