@@ -9,15 +9,31 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf'
-DEBUG = False
+# SECURITY: Use env var on Render; fallback for local
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf'
+)
 
-ALLOWED_HOSTS = [
-    # 'smiles-culture-backend-8.onrender.com',
-    'localhost',
-    '127.0.0.1',
+# Automatically False on Render, True locally
+DEBUG = 'RENDER' not in os.environ
 
-]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+# Add Render's hostname automatically (fixes 400 Bad Request)
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Optional: If you add a custom domain later (e.g. api.yourdomain.com)
+# ALLOWED_HOSTS.append('api.yourdomain.com')
+
+# Proxy settings (Render terminates HTTPS)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+# Optional: Force HTTPS in production (uncomment after first successful load)
+# SECURE_SSL_REDIRECT = not DEBUG
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -33,7 +49,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'cloudinary_storage',
     'cloudinary',
-    
 ]
 
 MIDDLEWARE = [
@@ -101,11 +116,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",          # added for dev consistency
     "http://127.0.0.1:8000",
     "https://412e31c49d94.ngrok-free.app",
     "https://smiles-culture-rrvi.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+# Important if frontend sends POST/PUT/DELETE with credentials
+CSRF_TRUSTED_ORIGINS = [
+    "https://smiles-culture-rrvi.vercel.app",
+    "http://localhost:5173",
+    "https://412e31c49d94.ngrok-free.app",
+]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
@@ -114,8 +137,9 @@ CLOUDINARY_STORAGE = {
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+# MPESA settings
 MPESA_CONSUMER_KEY = os.getenv("MPESA_CONSUMER_KEY")
 MPESA_CONSUMER_SECRET = os.getenv("MPESA_CONSUMER_SECRET")
 MPESA_SHORTCODE = os.getenv("MPESA_SHORTCODE")
 MPESA_PASSKEY = os.getenv("MPESA_PASSKEY")
-MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "https://b7223e7b5186.ngrok-free.app/api/mpesa-callback/")
+MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "https://smiles-culture-backend-11.onrender.com/api/mpesa-callback/")
