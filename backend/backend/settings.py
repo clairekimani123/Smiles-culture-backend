@@ -127,13 +127,13 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",          # added for dev consistency
     "http://127.0.0.1:8000",
     "https://412e31c49d94.ngrok-free.app",
-    "https://smiles-culture-rrvi.vercel.app",
+    "https://smiles-culture-6twp.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
 # Important if frontend sends POST/PUT/DELETE with credentials
 CSRF_TRUSTED_ORIGINS = [
-    "https://smiles-culture-rrvi.vercel.app",
+    "https://smiles-culture-6twp.vercel.app",
     "http://localhost:5173",
     "https://412e31c49d94.ngrok-free.app",
 ]
