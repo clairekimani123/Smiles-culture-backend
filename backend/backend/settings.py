@@ -9,31 +9,21 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY: Use env var on Render; fallback for local
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
     'django-insecure-%+n_x)ka@@da4s0%l#ly_f-e1l(6cbpmv+&36l-rsb57k$(3wf'
 )
 
-# Automatically False on Render, True locally
 DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-# Add Render's hostname automatically (fixes 400 Bad Request)
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-# Optional: If you add a custom domain later (e.g. api.yourdomain.com)
-# ALLOWED_HOSTS.append('api.yourdomain.com')
-
-# Proxy settings (Render terminates HTTPS)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
-
-# Optional: Force HTTPS in production (uncomment after first successful load)
-# SECURE_SSL_REDIRECT = not DEBUG
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,13 +37,13 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'store',
     'django_extensions',
-    'cloudinary_storage',
+    'cloudinary_storage',  # must be before django.contrib.staticfiles
     'cloudinary',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,12 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-# WhiteNoise compression & manifest (makes files faster & cache-friendly)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Optional: If you have extra static folders (e.g. project-level static/)
-# STATICFILES_DIRS = [BASE_DIR / 'static']
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -124,28 +109,37 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173",          # added for dev consistency
+    "http://127.0.0.1:5173",
     "http://127.0.0.1:8000",
     "https://412e31c49d94.ngrok-free.app",
     "https://smiles-culture-6twp.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-# Important if frontend sends POST/PUT/DELETE with credentials
 CSRF_TRUSTED_ORIGINS = [
     "https://smiles-culture-6twp.vercel.app",
     "http://localhost:5173",
     "https://412e31c49d94.ngrok-free.app",
 ]
 
+# ---- Cloudinary ----
+# Reads from .env locally and from Render environment variables in production
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
+
+
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.getenv('CLOUDINARY_API_KEY'),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET'),
+    secure=True  # forces https:// URLs
+)
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# MPESA settings
+# ---- M-Pesa ----
 MPESA_CONSUMER_KEY = os.getenv("MPESA_CONSUMER_KEY")
 MPESA_CONSUMER_SECRET = os.getenv("MPESA_CONSUMER_SECRET")
 MPESA_SHORTCODE = os.getenv("MPESA_SHORTCODE")

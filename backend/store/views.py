@@ -16,6 +16,13 @@ class ProductListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.AllowAny]
 
 
+# ---- Single Product by ID ----
+class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.AllowAny]
+
+
 # ---- Cart ----
 class CartItemListCreateView(generics.ListCreateAPIView):
     queryset = CartItem.objects.all()
