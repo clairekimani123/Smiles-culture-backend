@@ -112,12 +112,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://127.0.0.1:8000",
     "https://412e31c49d94.ngrok-free.app",
-    "https://smiles-culture-6twp.vercel.app",
+    "https://smiles-culture.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://smiles-culture-6twp.vercel.app",
+    "https://smiles-culture.vercel.app",
     "http://localhost:5173",
     "https://412e31c49d94.ngrok-free.app",
 ]
@@ -144,4 +144,4 @@ MPESA_CONSUMER_KEY = os.getenv("MPESA_CONSUMER_KEY")
 MPESA_CONSUMER_SECRET = os.getenv("MPESA_CONSUMER_SECRET")
 MPESA_SHORTCODE = os.getenv("MPESA_SHORTCODE")
 MPESA_PASSKEY = os.getenv("MPESA_PASSKEY")
-MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "https://smiles-culture-backend-11.onrender.com/api/mpesa-callback/")
+MPESA_CALLBACK_URL = os.getenv("MPESA_CALLBACK_URL", "https://smiles-culture-backend-8.onrender.com/api/mpesa-callback/")
