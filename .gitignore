@@ -1,25 +1,41 @@
 # Python
 __pycache__/
 *.py[cod]
-*.sqlite3
-
-# Virtual environment
+*$py.class
+*.so
+.Python
 venv/
+.venv/
 env/
-
-# Environment variables
-.env
+ENV/
+build/
+dist/
+*.egg-info/
 
 # Django
+*.log
 db.sqlite3
-media/
-staticfiles/
+db.sqlite3-journal
+/staticfiles/
+/media/
 
-# VS Code
-.vscode/
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
 
-# macOS / Linux
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.code-workspace
 .DS_Store
 
-# Node modules (if React/Vue frontend is inside this project)
-node_modules/
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Misc
+.vercel
