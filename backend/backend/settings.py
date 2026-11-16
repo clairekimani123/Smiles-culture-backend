@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'store',
+    'mpesa',
     'django_extensions',
     'cloudinary_storage',  # must be before django.contrib.staticfiles
     'cloudinary',
