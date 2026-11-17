@@ -12,7 +12,7 @@ class MpesaTransaction(models.Model):
         UNKNOWN    = "unknown",    "Unknown (callback not received)"
 
     id                = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    order             = models.ForeignKey("store.Order", on_delete=models.CASCADE, related_name="mpesa_transactions")
+    order             = models.ForeignKey("orders.Order", on_delete=models.CASCADE, related_name="mpesa_transactions")
     checkout_request_id = models.CharField(max_length=100, unique=True, db_index=True)
     merchant_request_id = models.CharField(max_length=100, blank=True)
     phone             = models.CharField(max_length=20)
