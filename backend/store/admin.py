@@ -1,8 +1,9 @@
 from django.contrib import admin
 from .models import Product
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'price', 'category', 'created_at')
-    list_display_links = ["name"]
-    search_fields = ('name', 'category')
+    list_display  = ("name", "price", "stock", "category", "created_at")
+    list_filter   = ("category",)
+    search_fields = ("name", "description")
